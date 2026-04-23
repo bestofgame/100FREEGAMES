@@ -1,9 +1,9 @@
 ﻿{
-	"name": "Traffic Racer",
-	"short_name": "Traffic Racer",
+	"name": "100 in 1 Super Games Bundle",
+	"short_name": "100 in 1 Super Games Bundle",
 	"start_url": "index.html",
 	"display": "fullscreen",
-	"orientation": "landscape",
+	"orientation": "any",
 	"icons": [{
 		"src": "icon-16.png",
 		"sizes": "16x16",
