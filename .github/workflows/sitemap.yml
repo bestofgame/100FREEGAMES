@@ -1,1 +1,29 @@
 
+name: Generate sitemap
+
+on:
+  push:
+    branches: [ main ]  # Remplacez par le nom de votre branche principale
+
+jobs:
+  sitemap_job:
+    runs-on: ubuntu-latest
+    name: Generate a sitemap
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Important pour que l'action puisse lire l'historique des dates
+
+    - name: Generate the sitemap
+      uses: cicirello/generate-sitemap@v1
+      with:
+        base-url-path: https://bestofgame.github.io/100FREEGAMES/
+
+    - name: Commit and push
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add sitemap.xml sitemap.txt
+        git commit -m "Automated sitemap update" || exit 0
+        git push
