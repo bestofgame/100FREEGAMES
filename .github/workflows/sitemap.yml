@@ -24,6 +24,7 @@ jobs:
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git add sitemap.xml sitemap.txt
-        git commit -m "Automated sitemap update" || exit 0
-        git push
+        # On ajoute les fichiers sitemap s'ils existent
+        git add sitemap.xml sitemap.txt || echo "Certains fichiers sitemap sont manquants"
+        # On ne commit que s'il y a des changements
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Automated sitemap update" && git push)
